@@ -38,9 +38,9 @@ function ensureAuth(req, res, next) {
 app.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     return res.send(`
-      <h2>Hello, ${req.user.displayName}!</h2>
+      <h2>Hello, ${req.user.name || req.user.displayName}!</h2>
       <p>Email: ${req.user.email || 'N/A'}</p>
-      ${req.user.photo ? `<img src="${req.user.photo}" alt="profile picture" width="100"/>` : ''}
+      ${req.user.picture || req.user.photo ? `<img src="${req.user.picture || req.user.photo}" alt="profile picture" width="100"/>` : ''}
       <br/><br/>
       <a href="/profile">View Profile JSON</a> | <a href="/logout">Logout</a>
     `);
